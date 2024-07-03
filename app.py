@@ -9,8 +9,10 @@ st.title("Image Grid Processor")
 # Upload image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
+# SideBar
 # Dropdowns
-grid_size = st.slider("Grid Size", min_value=10, max_value=100, value=10, step=5)
+colors = st.sidebar.multiselect("Standard KeyBoard Colors",options=['black','white','grey'],default=[],                             help='Leave blank to default to average color')
+grid_size = st.sidebar.slider("Number of Keys (width)", min_value=10, max_value=100, value=10, step=5)
 
 # Process Image
 if uploaded_file is not None:
@@ -23,13 +25,13 @@ if uploaded_file is not None:
     border_width = 5  # Width of the border between squares
     background_color = 'black'  # Background color ('white' or 'black')
     
-    pixelater = ImageGridProcessor(image_path=uploaded_file)
+    pixelater = ImageGridProcessor(image_path=uploaded_file, colors=colors)
     pixelated_image = pixelater.process_and_display(grid_size=grid_size)
     st.image(pixelated_image, caption='Pixelated image')
 
 else:
     image = r'image/python.PNG'
-    pixelater = ImageGridProcessor(image_path=image)
+    pixelater = ImageGridProcessor(image_path=image, colors=colors)
     pixelated_image = pixelater.process_and_display(grid_size=grid_size)
     st.image(pixelated_image, caption='Pixelated image')
 

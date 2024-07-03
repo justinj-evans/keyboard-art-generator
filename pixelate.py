@@ -48,9 +48,13 @@ class ImageGridProcessor:
             # Convert image to a small thumbnail to calculate average color
             img_thumbnail = img.resize((1, 1))
             avg_color = img_thumbnail.getpixel((0, 0))
-            
-            # Determine the closest color from the list
-            closest = self.closest_color(avg_color)
+
+            # If color list is not supplied, default to average color of grid square
+            if not self.colors:
+                closest = avg_color
+            else:            
+                # Determine the closest color from the list
+                closest = self.closest_color(avg_color)
             
             # Create a new image with the closest color
             new_img = Image.new('RGB', img.size, closest)
