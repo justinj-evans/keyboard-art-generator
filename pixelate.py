@@ -1,12 +1,13 @@
 import streamlit as st
 from PIL import Image, ImageDraw, ImageOps
+from image import color_name_to_rgb
 
 class ImageGridProcessor:
-    def __init__(self, image_path, border_width=5, background_color='black', colors=[(0, 0, 0), (255, 255, 255), (128, 128, 128)]):
+    def __init__(self, image_path, border_width=5, background_color='black', colors=['white','black','grey']):
         self.image_path = image_path
         self.border_width = border_width
         self.background_color = background_color
-        self.colors = colors  # Black, White, Grey
+        self.colors = [color_name_to_rgb(i) for i in colors]  # Black, White, Grey - 0, 0, 0), (255, 255, 255), (128, 128, 128)
     
     def split_image_into_grid(self, grid_size):
 
