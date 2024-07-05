@@ -149,7 +149,7 @@ class ImageGridProcessor:
         self.grid_colors_count = Counter(self.grid_colors).most_common()
 
         # Format grid colors for export
-        grid_color_matrix = self.format_to_grid(flat_list=self.grid_color_name_count) 
+        grid_color_matrix = self.format_to_grid(flat_list=self.grid_color_names)
         self.grid_color_matrix_count = self.grid_color_order(matrix=grid_color_matrix)
 
 

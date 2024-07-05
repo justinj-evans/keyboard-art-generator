@@ -25,10 +25,13 @@ pixelated_image = pixelater.process_and_display(grid_size=grid_size)
 pixelater.process_grid_colors()
 grid_color_matrix_count_export = '\n'.join(str(row) for row in pixelater.grid_color_matrix_count)
 
+# Metrics
+st.metric(label='Keys', value=grid_size*grid_size)
+#st.metric(label='Colors', value=len(pixelater.grid_colors_count.keys()))
 
 # Display Grid Color Counts in a row
 color_grids = 10
-cols = st.columns(len(pixelater.grid_colors_count[0:color_grids]))
+cols = st.columns(len(pixelater.grid_colors_count[0:color_grids]), gap='small')
 for i, (color, count) in enumerate(pixelater.grid_colors_count[0:color_grids][0:color_grids]):
     with cols[i]:
         image = Image.new('RGB', size=(50, 50), color=color)
@@ -42,5 +45,6 @@ for i, (color, count) in enumerate(pixelater.grid_colors_count[0:color_grids][0:
 st.image(pixelated_image, caption='Pixelated image', use_column_width=True)
 
 # Download Button - Export Instructions
-st.download_button(label='Download - Pixelated Image',data=PIL_to_PNG(pixelated_image), file_name='pixelated_image.png',mime='image/png')
-st.download_button(label='Download - Pixelated Grid Instructions',data=grid_color_matrix_count_export, file_name='grid_color_order.txt',mime="text/plain")
+d1, d2 = st.columns(2,gap='small')
+with d1: st.download_button(label='Download - Pixelated Image',data=PIL_to_PNG(pixelated_image), file_name='pixelated_image.png',mime='image/png')
+with d2: st.download_button(label='Download - Pixelated Grid Instructions',data=grid_color_matrix_count_export, file_name='grid_color_order.txt',mime="text/plain")
