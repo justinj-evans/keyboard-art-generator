@@ -4,7 +4,7 @@ from pixelate import ImageGridProcessor
 from image import PIL_to_PNG
 
 # # Streamlit app
-st.title("Image Grid Processor")
+st.title("Keyboard Art Generator")
 
 # Upload image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
@@ -26,8 +26,9 @@ pixelater.process_grid_colors()
 grid_color_matrix_count_export = '\n'.join(str(row) for row in pixelater.grid_color_matrix_count)
 
 # Metrics
-st.metric(label='Keys', value=grid_size*grid_size)
-#st.metric(label='Colors', value=len(pixelater.grid_colors_count.keys()))
+m1, m2 = st.columns(2,gap='small')
+with m1: st.metric(label='Keys', value=grid_size*grid_size)
+with m2: st.metric(label='Colors', value=len(pixelater.grid_colors_count))
 
 # Display Grid Color Counts in a row
 color_grids = 10
