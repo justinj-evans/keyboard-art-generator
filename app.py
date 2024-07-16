@@ -12,7 +12,7 @@ with st.expander('Example'):
     with e1: st.image("docs/landscape.PNG",width=100, caption='Choose an Image')
     with e2: st.image("docs/inputs.PNG",width=100, caption='Select Inputs')
     with e3: st.image("docs/landscape-keyboard-generator.PNG",width=100, caption='Pixelate Your Image')
-    with e4: st.image("docs/keyboard.PNG",width=100, caption='Recycle Keycaps from Keyboard')
+    with e4: st.image("docs/keyboards.PNG",width=100, caption='Recycle Keycaps from Keyboard')
     with e5: st.image("docs/landscape-keys.PNG",width=100, caption='Keyboard Artwork')
 
 # Upload image
